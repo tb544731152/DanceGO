@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.realfans.dancego">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+
     <application
         android:name="com.beautifulsoup.dancego.App"
         android:allowBackup="true"
@@ -19,6 +22,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.beautifulsoup.dancego.activity.MainActivity"/>
+        <activity android:name="com.beautifulsoup.dancego.activity.GuideActivity"/>
     </application>
 
 </manifest>

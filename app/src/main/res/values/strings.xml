@@ -6,4 +6,6 @@
     <string name="onboarding_finish_button_description">开始体验</string>
     <string name="onboarding_next_button_description">下一页</string>
     <string name="onboarding_pre_button_description">上一页</string>
+    <string name="drawer_open">打开侧边栏</string>
+    <string name="drawer_close">关闭侧边栏</string>
 </resources>

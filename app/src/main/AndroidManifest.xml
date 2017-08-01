@@ -25,6 +25,8 @@
             android:name="com.beautifulsoup.dancego.activity.GuideActivity"
             android:label="@string/title_activity_guide"
             android:theme="@style/AppTheme" />
+        <activity android:name="com.beautifulsoup.dancego.activity.LoginActivity"/>
+        <activity android:name="com.beautifulsoup.dancego.activity.RegisterActivity"/>
     </application>
 
 </manifest>

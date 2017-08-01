@@ -29,7 +29,8 @@ public class MainActivity extends BaseActivity implements MainView{
         actionBar=getSupportActionBar();
         if (null!=actionBar){
             actionBar.setDisplayHomeAsUpEnabled(true);
-//            actionBar.setHomeAsUpIndicator();
+            actionBar.setHomeButtonEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.drawable.menu_icon);
         }
 
         setSupportActionBar(toolbar);

@@ -5,8 +5,10 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
@@ -28,18 +30,38 @@ import butterknife.ButterKnife;
 public class SplashActivity extends AppCompatActivity {
 
     private static final int ANIMATION_DURATION=2000;
+
     @BindView(R.id.iv_splash)
     ImageView iv_splash;
+
+
+    private SharedPreferences pref;
+    private SharedPreferences.Editor editor;
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_splash);
-        ButterKnife.bind(this);
 
-        Glide.with(this).load(ConstantConfig.SPLASH_IMAGE).error(R.drawable.splash_base).into(iv_splash);
-        animateImage();
+
+        pref= PreferenceManager.getDefaultSharedPreferences(this);
+        boolean isFirstLoginIn=pref.getBoolean("is_first_in",true);
+
+        if (isFirstLoginIn){
+            Intent intent=new Intent();
+            intent.setClass(SplashActivity.this,GuideActivity.class);
+            startActivity(intent);
+            SplashActivity.this.finish();
+        }else{
+            setContentView(R.layout.activity_splash);
+            ButterKnife.bind(this);
+            Glide.with(this).load(ConstantConfig.SPLASH_IMAGE).error(R.drawable.splash_base).into(iv_splash);
+            animateImage();
+        }
+
+
     }
 
     private void animateImage(){

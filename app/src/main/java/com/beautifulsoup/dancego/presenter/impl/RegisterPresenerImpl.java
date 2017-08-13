@@ -74,13 +74,14 @@ public class RegisterPresenerImpl implements RegisterPresenter {
     public void registUser(String username, String phone, String password, String age, String sex) {
         final RegisterService registerService=retrofit.create(RegisterService.class);
 
+        //执行链式调用
         HttpManager.newInstance().with(context).setObservable(
                 registerService.registerUser(ConstantConfig.BASE_URL+REQUIST_PATH,username,phone,sex,age,password)
         ).setDataListener(new HttpDataListener<RegisterResult<String>>(){
             @Override
             public void onNext(RegisterResult<String> response) {
                 String result=response.getResult();
-                if(result.equals(ConstantConfig.REGISTER_SUCCESS)){
+                if(result.equals(ConstantConfig.SUCCESS)){
                     Toast.makeText(context,"恭喜,注册成功!",Toast.LENGTH_SHORT).show();
                     new Handler().postDelayed(new Runnable() {
                         @Override

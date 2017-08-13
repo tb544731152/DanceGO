@@ -1,5 +1,7 @@
 package com.beautifulsoup.dancego.view;
 
+import android.os.Bundle;
+
 import com.beautifulsoup.dancego.view.base.BaseView;
 
 /**
@@ -7,4 +9,5 @@ import com.beautifulsoup.dancego.view.base.BaseView;
  */
 
 public interface LoginView extends BaseView {
+    void gotoMainActivity(Bundle data);
 }

@@ -3,7 +3,10 @@ package com.beautifulsoup.dancego.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.nfc.tech.NfcA;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -14,18 +17,23 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.beautifulsoup.dancego.App;
 import com.beautifulsoup.dancego.activity.base.BaseActivity;
+import com.beautifulsoup.dancego.bean.LoginResult;
 import com.beautifulsoup.dancego.fragment.main.GroupFragment;
 import com.beautifulsoup.dancego.fragment.main.HomeFragment;
 import com.beautifulsoup.dancego.fragment.main.MusicFragment;
 import com.beautifulsoup.dancego.utils.ActivityController;
 import com.beautifulsoup.dancego.utils.ConstantConfig;
+import com.beautifulsoup.dancego.utils.Logout;
 import com.beautifulsoup.dancego.view.MainView;
 import com.realfans.dancego.R;
 
@@ -53,7 +61,7 @@ public class MainActivity extends BaseActivity implements MainView{
     private Fragment group_fragment;
     private Fragment music_fragment;
 
-
+    private Logout logout;
     @Override
     protected void loadViewLayout() {
         setContentView(R.layout.activity_main);
@@ -96,7 +104,7 @@ public class MainActivity extends BaseActivity implements MainView{
                         startActivity(intent);
                         break;
                     case R.id.nav_logout:
-
+                        logout();
                         break;
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
@@ -139,11 +147,26 @@ public class MainActivity extends BaseActivity implements MainView{
 
 
         setDefaultFragment();
+        SharedPreferences preferences=PreferenceManager.getDefaultSharedPreferences(App.getContext());
+        ((TextView)navigationView.getHeaderView(0).findViewById(R.id.tv_username)).setText(preferences.getString(ConstantConfig.USERNAME,"-"));
     }
 
 
     @Override
     protected void processLogic() {
+        Intent loginIntent=getIntent();
+        Bundle bundle= loginIntent.getExtras();
+        if(null!=bundle){
+            SharedPreferences preferences= PreferenceManager.getDefaultSharedPreferences(App.getContext());
+            SharedPreferences.Editor editor=preferences.edit();
+//            LoginResult userinfo= bundle.getParcelable(ConstantConfig.USER_INFO);
+            editor.putString(ConstantConfig.USERNAME,bundle.getString(ConstantConfig.USERNAME))
+                    .putString(ConstantConfig.PASSWORD,bundle.getString(ConstantConfig.PASSWORD))
+                    .putString(ConstantConfig.PHONENUM,bundle.getString(ConstantConfig.PHONENUM))
+                    .putString(ConstantConfig.TOKEN,bundle.getString(ConstantConfig.TOKEN)).apply();
+
+        }
+
 
     }
 
@@ -151,29 +174,6 @@ public class MainActivity extends BaseActivity implements MainView{
     protected Context getActivityContext() {
         return this;
     }
-
-    @Override
-    public void showProgress() {
-
-    }
-
-    @Override
-    public void hideProgress() {
-
-    }
-
-    @Override
-    public void showMsg(String message) {
-
-    }
-
-    private void setDefaultFragment(){
-        FragmentManager manager=getSupportFragmentManager();
-        FragmentTransaction tx=manager.beginTransaction();
-        tx.replace(R.id.frame_content,home_fragment);
-        tx.commit();
-    }
-
 
     @Override
     public void onBackPressed() {
@@ -200,5 +200,30 @@ public class MainActivity extends BaseActivity implements MainView{
         }
         return false;
     }
+
+
+    private void setDefaultFragment(){
+        FragmentManager manager=getSupportFragmentManager();
+        FragmentTransaction tx=manager.beginTransaction();
+        tx.replace(R.id.frame_content,home_fragment);
+        tx.commit();
+    }
+
+    private void logout(){
+        SharedPreferences preferences=PreferenceManager.getDefaultSharedPreferences(App.getContext());
+        String phonenum=preferences.getString(ConstantConfig.PHONENUM,"-");
+        String token=preferences.getString(ConstantConfig.TOKEN,"-");
+        Log.i(ConstantConfig.USERNAME, preferences.getString(ConstantConfig.USERNAME,"-"));
+        Log.i(ConstantConfig.PASSWORD, preferences.getString(ConstantConfig.PASSWORD,"-"));
+        Log.i(ConstantConfig.TOKEN,token);
+        Log.i(ConstantConfig.PHONENUM, phonenum);
+
+        logout=Logout.newInstance().with(getActivityContext());
+        logout.logout(phonenum,token);
+        ((TextView)navigationView.getHeaderView(0).findViewById(R.id.tv_username)).setText("");
+    }
+
+
+
 
 }

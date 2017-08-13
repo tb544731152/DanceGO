@@ -2,9 +2,11 @@ package com.beautifulsoup.dancego.api;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.beautifulsoup.dancego.listener.HttpDataListener;
+import com.beautifulsoup.dancego.utils.ConstantConfig;
 
 import java.lang.ref.WeakReference;
 
@@ -57,6 +59,7 @@ public class SubscriberManager<T> extends Subscriber<T> {
         if (null==context){
             return;
         }
+        Log.i(ConstantConfig.REQUEST_ERROR, e.getMessage());
         Toast.makeText(context,"请求失败",Toast.LENGTH_SHORT).show();
         cancelRequest();
         dismissProgressDialog();

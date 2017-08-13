@@ -1,6 +1,7 @@
 package com.beautifulsoup.dancego.fragment.main;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -39,15 +40,21 @@ public class HomeFragment extends BaseFragment{
     protected void loadData(View view) {
         String[] titles=new String[]{"团体舞视频","舞曲库"};
         tabLayout.setupWithViewPager(viewPager);
+
         View view1=LayoutInflater.from(getActivity()).inflate(R.layout.fragment_video,null);
+
         View view2=LayoutInflater.from(getActivity()).inflate(R.layout.fragment_songlibrary,null);
+
         List<View> views=new ArrayList<>();
         views.add(view1);
         views.add(view2);
         viewPager.setAdapter(new HomePagerAdapter(views,titles));
-
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
+    }
 
 }

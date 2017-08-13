@@ -23,8 +23,8 @@ import butterknife.OnClick;
 
 public class RegisterActivity extends BaseActivity implements RegisterView{
 
-    @BindView(R.id.rg_usernameWappper)
-    TextInputLayout rg_usernameWapper;
+    @BindView(R.id.rg_usernameWrapper)
+    TextInputLayout rg_usernameWrapper;
     @BindView(R.id.rg_passwordWrapper)
     TextInputLayout rg_passwordWrapper;
     @BindView(R.id.rg_phoneWrapper)
@@ -65,24 +65,10 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
         return this;
     }
 
-    @Override
-    public void showProgress() {
-
-    }
-
-    @Override
-    public void hideProgress() {
-
-    }
-
-    @Override
-    public void showMsg(String message) {
-
-    }
 
     @OnClick(R.id.btn_register)
     public void register(){
-        username=rg_usernameWapper.getEditText().getText().toString();
+        username=rg_usernameWrapper.getEditText().getText().toString();
         password=rg_passwordWrapper.getEditText().getText().toString();
         phone=rg_phoneWrapper.getEditText().getText().toString();
         age=rg_ageWrapper.getEditText().getText().toString();
@@ -104,7 +90,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
 
     @Override
     public void setRg_usernameWapperError() {
-        rg_usernameWapper.setError(ResourceUtil.getString(R.string.rg_username_error));
+        rg_usernameWrapper.setError(ResourceUtil.getString(R.string.rg_username_error));
     }
 
 
@@ -126,7 +112,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
 
     @Override
     public void close_usernameWrapperError() {
-        rg_usernameWapper.setErrorEnabled(false);
+        rg_usernameWrapper.setErrorEnabled(false);
     }
 
     @Override

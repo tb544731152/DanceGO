@@ -7,5 +7,5 @@ import com.beautifulsoup.dancego.presenter.base.BasePresenter;
  */
 
 public interface LoginPresenter extends BasePresenter {
-
+    void login(String phonenum,String password);
 }

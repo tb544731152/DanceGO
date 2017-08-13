@@ -41,10 +41,10 @@ public class HttpManager {
         return singleton;
     }
 
-    public HttpManager setObservable(Observable<RegisterResult<String>> observable){
+    public HttpManager setObservable(Observable observable){
         this.observable=observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread()).map(new ResultMap<String>());
+                .observeOn(AndroidSchedulers.mainThread());
         return singleton;
     }
 

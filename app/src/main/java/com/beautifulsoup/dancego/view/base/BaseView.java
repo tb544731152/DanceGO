@@ -6,8 +6,4 @@ package com.beautifulsoup.dancego.view.base;
 
 public interface BaseView {
 
-    void showProgress();
-    void hideProgress();
-    void showMsg(String message);
-
 }

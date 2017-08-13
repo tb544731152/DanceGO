@@ -8,4 +8,6 @@ import com.beautifulsoup.dancego.presenter.base.BasePresenter;
 
 public interface RegisterPresenter extends BasePresenter {
     boolean checkValidatedInfo(String username,String phone,String password,String age,boolean male);
+
+    void registUser(String username,String phone,String password,String age,String sex);
 }

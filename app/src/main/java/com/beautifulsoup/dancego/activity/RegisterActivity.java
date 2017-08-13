@@ -57,7 +57,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
 
     @Override
     protected void processLogic() {
-        registerPresenter=new RegisterPresenerImpl(this);
+        registerPresenter=new RegisterPresenerImpl(this,getActivityContext());
     }
 
     @Override
@@ -87,7 +87,18 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
         phone=rg_phoneWrapper.getEditText().getText().toString();
         age=rg_ageWrapper.getEditText().getText().toString();
 
-        registerPresenter.checkValidatedInfo(username,phone,password,age,rb_male.isChecked());
+        boolean result=registerPresenter.checkValidatedInfo(username,phone,password,age,rb_male.isChecked());
+
+        if (result){
+            //此时说明验证成功
+            if(rb_male.isChecked()){
+                //此时是男
+                registerPresenter.registUser(username,phone,password,age,"0");
+            }else{
+                //此时是女
+                registerPresenter.registUser(username,phone,password,age,"1");
+            }
+        }
     }
 
 
@@ -95,6 +106,8 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
     public void setRg_usernameWapperError() {
         rg_usernameWapper.setError(ResourceUtil.getString(R.string.rg_username_error));
     }
+
+
 
     @Override
     public void setRg_phoneWapperError() {
@@ -109,5 +122,30 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
     @Override
     public void setRg_ageWapperError() {
         rg_ageWrapper.setError(ResourceUtil.getString(R.string.rg_age_error));
+    }
+
+    @Override
+    public void close_usernameWrapperError() {
+        rg_usernameWapper.setErrorEnabled(false);
+    }
+
+    @Override
+    public void close_phoneWrapperError() {
+        rg_phoneWrapper.setErrorEnabled(false);
+    }
+
+    @Override
+    public void close_passwordWrapperError() {
+        rg_passwordWrapper.setErrorEnabled(false);
+    }
+
+    @Override
+    public void close_ageWrapperError() {
+        rg_ageWrapper.setErrorEnabled(false);
+    }
+
+    @Override
+    public void gotoLoginActivity() {
+        this.finish();
     }
 }

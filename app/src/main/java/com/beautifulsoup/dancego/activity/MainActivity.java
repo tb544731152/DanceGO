@@ -3,6 +3,7 @@ package com.beautifulsoup.dancego.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.nfc.tech.NfcA;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -75,6 +76,9 @@ public class MainActivity extends BaseActivity implements MainView{
                 .addItem(new BottomNavigationItem(R.drawable.ic_group, "Group"))
                 .addItem(new BottomNavigationItem(R.drawable.music, "Music"))
                 .initialise();
+        navigationBar.setMode(BottomNavigationBar.MODE_SHIFTING);
+//        navigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_RIPPLE);
+
         home_fragment=new HomeFragment();
         group_fragment=new GroupFragment();
         music_fragment=new MusicFragment();
@@ -99,7 +103,7 @@ public class MainActivity extends BaseActivity implements MainView{
                 return true;
             }
         });
-
+        navigationBar.setFirstSelectedPosition(0);
         navigationBar.setTabSelectedListener(new BottomNavigationBar.OnTabSelectedListener() {
             @Override
             public void onTabSelected(int position) {

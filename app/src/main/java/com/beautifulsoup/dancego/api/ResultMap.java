@@ -8,9 +8,10 @@ import rx.functions.Func1;
  * Created by BeautifulSoup on 2017/8/1.
  */
 
-public class ResultMap<T> implements Func1<RegisterResult<T>,T> {
+public class ResultMap<T> implements Func1<RegisterResult<T>,RegisterResult<T>> {
+
     @Override
-    public T call(RegisterResult<T> tRegisterResult) {
-        return null;
+    public RegisterResult<T> call(RegisterResult<T> tRegisterResult) {
+        return tRegisterResult;
     }
 }

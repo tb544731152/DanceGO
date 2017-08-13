@@ -6,6 +6,8 @@ import java.util.Map;
 
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Url;
 import rx.Observable;
@@ -16,8 +18,13 @@ import rx.Observable;
 
 public interface RegisterService {
 
-    @FormUrlEncoded
     @POST
-    Observable<RegisterResult<String>> registerUser(@Url String url, @FieldMap Map<String,String> params);
+    Observable<RegisterResult<String>> registerUser(@Url String url, @Header("username")String username,
+                                                    @Header("phonenum")String phonenum,
+                                                    @Header("sex")String sex,
+                                                    @Header("age")String age,
+                                                    @Header("password")String password);
+
+
 
 }

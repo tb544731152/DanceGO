@@ -1,4 +1,4 @@
-package com.beautifulsoup.dancego.fragment;
+package com.beautifulsoup.dancego.fragment.main;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

@@ -14,4 +14,9 @@ public class ConstantConfig {
 
     public static final int EXIT_TIME=1500;
 
+    public static final String HOME_VIEW="home";
+
+    public static final String GROUP_VIEW="group";
+
+    public static final String MUSIC_VIEW="music";
 }

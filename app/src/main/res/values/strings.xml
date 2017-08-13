@@ -8,4 +8,8 @@
     <string name="onboarding_pre_button_description">上一页</string>
     <string name="drawer_open">打开侧边栏</string>
     <string name="drawer_close">关闭侧边栏</string>
+    <string name="rg_username_error">"用户名必须是1-20个字符"</string>
+    <string name="rg_phone_error">手机号必须是11位数字</string>
+    <string name="rg_password_error">密码的长度必须在8-30之间</string>
+    <string name="rg_age_error">年龄必须在0-100之间</string>
 </resources>

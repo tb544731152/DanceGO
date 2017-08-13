@@ -52,4 +52,7 @@ dependencies {
     compile 'com.squareup.retrofit2:adapter-rxjava:+'
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
 
+    //bottomnavigationbar
+    compile 'com.ashokvarma.android:bottom-navigation-bar:2.0.2'
+
 }

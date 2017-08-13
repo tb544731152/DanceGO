@@ -3,11 +3,13 @@ package com.beautifulsoup.dancego.activity;
 import android.content.Context;
 import android.support.design.widget.TextInputLayout;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.beautifulsoup.dancego.activity.base.BaseActivity;
 import com.beautifulsoup.dancego.presenter.RegisterPresenter;
 import com.beautifulsoup.dancego.presenter.impl.RegisterPresenerImpl;
+import com.beautifulsoup.dancego.utils.ResourceUtil;
 import com.beautifulsoup.dancego.view.RegisterView;
 import com.realfans.dancego.R;
 
@@ -29,8 +31,9 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
     TextInputLayout rg_phoneWrapper;
     @BindView(R.id.rg_ageWrapper)
     TextInputLayout rg_ageWrapper;
-    @BindView(R.id.rg_sexWrapper)
-    TextInputLayout rg_sexWrapper;
+    @BindView(R.id.rb_male)
+    RadioButton rb_male;
+
     @BindView(R.id.btn_register)
     Button btn_register;
 
@@ -39,7 +42,6 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
     private String username;
     private String password;
     private String phone;
-    private String sex;
     private String age;
 
     @Override
@@ -55,7 +57,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
 
     @Override
     protected void processLogic() {
-        registerPresenter=new RegisterPresenerImpl();
+        registerPresenter=new RegisterPresenerImpl(this);
     }
 
     @Override
@@ -83,12 +85,29 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
         username=rg_usernameWapper.getEditText().getText().toString();
         password=rg_passwordWrapper.getEditText().getText().toString();
         phone=rg_phoneWrapper.getEditText().getText().toString();
-        sex=rg_sexWrapper.getEditText().getText().toString();
         age=rg_ageWrapper.getEditText().getText().toString();
 
-        Toast.makeText(RegisterActivity.this,"username:"+username+",password:")
-
+        registerPresenter.checkValidatedInfo(username,phone,password,age,rb_male.isChecked());
     }
 
 
+    @Override
+    public void setRg_usernameWapperError() {
+        rg_usernameWapper.setError(ResourceUtil.getString(R.string.rg_username_error));
+    }
+
+    @Override
+    public void setRg_phoneWapperError() {
+        rg_phoneWrapper.setError(ResourceUtil.getString(R.string.rg_phone_error));
+    }
+
+    @Override
+    public void setRg_passwordWapperError() {
+        rg_passwordWrapper.setError(ResourceUtil.getString(R.string.rg_password_error));
+    }
+
+    @Override
+    public void setRg_ageWapperError() {
+        rg_ageWrapper.setError(ResourceUtil.getString(R.string.rg_age_error));
+    }
 }

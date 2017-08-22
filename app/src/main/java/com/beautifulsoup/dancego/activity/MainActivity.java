@@ -4,6 +4,7 @@ package com.beautifulsoup.dancego.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.nfc.tech.NfcA;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -19,7 +20,9 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +38,7 @@ import com.beautifulsoup.dancego.utils.ActivityController;
 import com.beautifulsoup.dancego.utils.ConstantConfig;
 import com.beautifulsoup.dancego.utils.Logout;
 import com.beautifulsoup.dancego.view.MainView;
+import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import com.realfans.dancego.R;
 
 import butterknife.BindView;
@@ -53,6 +57,8 @@ public class MainActivity extends BaseActivity implements MainView{
     NavigationView navigationView;
     @BindView(R.id.bottom_navigation_bar)
     BottomNavigationBar navigationBar;
+    @BindView(R.id.md_search_view)
+    MaterialSearchView searchView;
 
 
     private long mExitTime=0;
@@ -85,7 +91,6 @@ public class MainActivity extends BaseActivity implements MainView{
                 .addItem(new BottomNavigationItem(R.drawable.music, "Music"))
                 .initialise();
         navigationBar.setMode(BottomNavigationBar.MODE_SHIFTING);
-//        navigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_RIPPLE);
 
         home_fragment=new HomeFragment();
         group_fragment=new GroupFragment();
@@ -145,6 +150,10 @@ public class MainActivity extends BaseActivity implements MainView{
             }
         });
 
+//        searchView.
+        searchView.closeSearch();
+        searchView.setVisibility(View.GONE);
+        searchView.setBackgroundColor(Color.WHITE);
 
         setDefaultFragment();
         SharedPreferences preferences=PreferenceManager.getDefaultSharedPreferences(App.getContext());
@@ -159,7 +168,6 @@ public class MainActivity extends BaseActivity implements MainView{
         if(null!=bundle){
             SharedPreferences preferences= PreferenceManager.getDefaultSharedPreferences(App.getContext());
             SharedPreferences.Editor editor=preferences.edit();
-//            LoginResult userinfo= bundle.getParcelable(ConstantConfig.USER_INFO);
             editor.putString(ConstantConfig.USERNAME,bundle.getString(ConstantConfig.USERNAME))
                     .putString(ConstantConfig.PASSWORD,bundle.getString(ConstantConfig.PASSWORD))
                     .putString(ConstantConfig.PHONENUM,bundle.getString(ConstantConfig.PHONENUM))
@@ -177,6 +185,9 @@ public class MainActivity extends BaseActivity implements MainView{
 
     @Override
     public void onBackPressed() {
+        if(searchView.isSearchOpen()){
+            searchView.closeSearch();
+        }
         if(drawerLayout.isDrawerOpen(GravityCompat.START)){
             drawerLayout.closeDrawer(GravityCompat.START);
         }else{
@@ -224,6 +235,13 @@ public class MainActivity extends BaseActivity implements MainView{
     }
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
 
+        MenuItem item = menu.findItem(R.id.action_search);
+        searchView.setMenuItem(item);
 
+        return true;
+    }
 }

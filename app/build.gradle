@@ -54,5 +54,8 @@ dependencies {
 
     //bottomnavigationbar
     compile 'com.ashokvarma.android:bottom-navigation-bar:2.0.2'
+    //searchview
+    compile 'com.miguelcatalan:materialsearchview:1.4.0'
+    compile 'com.gavin.com.library:stickyDecoration:1.1.1'
 
 }

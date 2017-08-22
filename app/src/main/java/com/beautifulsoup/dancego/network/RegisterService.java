@@ -19,11 +19,11 @@ import rx.Observable;
 public interface RegisterService {
 
     @POST
-    Observable<RegisterResult<String>> registerUser(@Url String url, @Header("username")String username,
-                                                    @Header("phonenum")String phonenum,
-                                                    @Header("sex")String sex,
-                                                    @Header("age")String age,
-                                                    @Header("password")String password);
+    Observable<RegisterResult<String>> registerUser(@Url String url, @Header("Username")String username,
+                                                    @Header("Phonenum")String phonenum,
+                                                    @Header("Sex")String sex,
+                                                    @Header("Age")String age,
+                                                    @Header("Password")String password);
 
 
 

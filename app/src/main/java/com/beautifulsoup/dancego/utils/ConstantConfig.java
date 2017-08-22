@@ -35,4 +35,12 @@ public class ConstantConfig {
     public static final String PHONENUM="phonenum";
     public static final String TOKEN="token";
 
+    //获取Video列表
+    public static final String GET_VIDEO="http://115.159.24.31/firstpage/video";
+    //获取Music列表
+    public static final String GET_MUSIC="http://115.159.24.31/public/music/getlist";
+    //获取登录的接口
+    public static final String GET_JOINEDLIST="http://115.159.24.31/group/joinedlist";
+    public static final String GET_GROUPMUSIC="http://115.159.24.31/group/download";
+
 }

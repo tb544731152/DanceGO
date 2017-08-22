@@ -27,6 +27,7 @@
             android:theme="@style/AppTheme" />
         <activity android:name="com.beautifulsoup.dancego.activity.LoginActivity"/>
         <activity android:name="com.beautifulsoup.dancego.activity.RegisterActivity"/>
+        <activity android:name="com.beautifulsoup.dancego.activity.VideoPlayerActivity"/>
     </application>
 
 </manifest>

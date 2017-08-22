@@ -12,6 +12,7 @@ import com.beautifulsoup.dancego.bean.Video;
 import com.bumptech.glide.Glide;
 import com.realfans.dancego.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,16 +21,28 @@ import java.util.List;
 
 public class VideoItemAdapter extends RecyclerView.Adapter<VideoItemAdapter.ViewHolder> {
 
-    private Video video=null;
+
+
     private Context mContext;
     private int item_position;
+    private VideoItemSelected videoItemSelected;
+    private List<Video.DataBean.VideosBean> videoList;
 
-    public VideoItemAdapter(Video video,Context context,int item_position){
+
+
+    public VideoItemAdapter(Context context,int item_position){
         this.mContext=context;
         this.item_position=item_position;
-        this.video=video;
     }
 
+    public void setVideo(List<Video.DataBean.VideosBean> videoList){
+        this.videoList=videoList;
+        this.notifyDataSetChanged();
+    }
+
+    public void setVideoItemSelected(VideoItemSelected videoItemSelected) {
+        this.videoItemSelected = videoItemSelected;
+    }
 
     @Override
     public VideoItemAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -40,25 +53,39 @@ public class VideoItemAdapter extends RecyclerView.Adapter<VideoItemAdapter.View
     }
 
     @Override
-    public void onBindViewHolder(VideoItemAdapter.ViewHolder holder, int position) {
-        holder.tv_video_title.setText(video.getData().get(item_position).getVideos().get(position).getTitle());
-        Glide.with(mContext).load(video.getData().get(item_position).getVideos().get(position).getImgurl()).into(holder.bg_video_image);
+    public void onBindViewHolder(VideoItemAdapter.ViewHolder holder, final int position) {
+        holder.tv_video_title.setText(videoList.get(position).getTitle());
+        Glide.with(mContext).load(videoList.get(position).getImgurl()).into(holder.bg_video_image);
+
+        holder.bg_video_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(null!=videoItemSelected){
+                    videoItemSelected.selectedVideo(position);
+                }
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return video.getData().get(item_position).getVideos().size();
+        return videoList.size();
     }
 
 
     class ViewHolder extends RecyclerView.ViewHolder{
         ImageView bg_video_image;
         TextView tv_video_title;
-
+        View rootView;
         public ViewHolder(View itemView) {
             super(itemView);
+            rootView=itemView;
             bg_video_image= (ImageView) itemView.findViewById(R.id.bg_video_image);
             tv_video_title= (TextView) itemView.findViewById(R.id.tv_video_title);
         }
+    }
+
+    public interface VideoItemSelected{
+        void selectedVideo(int pos);
     }
 }

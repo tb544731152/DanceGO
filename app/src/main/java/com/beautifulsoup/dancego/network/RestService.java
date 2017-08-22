@@ -1,5 +1,9 @@
 package com.beautifulsoup.dancego.network;
 
+import com.beautifulsoup.dancego.bean.GroupList;
+import com.beautifulsoup.dancego.bean.Music;
+import com.beautifulsoup.dancego.bean.Video;
+
 import java.util.Map;
 
 import okhttp3.MultipartBody;
@@ -9,6 +13,7 @@ import retrofit2.http.DELETE;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -16,6 +21,7 @@ import retrofit2.http.Part;
 import retrofit2.http.QueryMap;
 import retrofit2.http.Streaming;
 import retrofit2.http.Url;
+import rx.Observable;
 
 /**
  * Created by BeautifulSoup on 2017/8/2.
@@ -44,6 +50,16 @@ public interface RestService {
     @Multipart
     @POST
     Call<String> upload(@Url String url, @Part MultipartBody.Part file);
+
+
+    @GET
+    Observable<Video> getVideo(@Url String url);
+
+    @GET
+    Observable<Music> getMusic(@Url String url);
+
+    @GET
+    Observable<GroupList> getGroupList(@Url String url, @Header("phonenum")String phonenum,@Header("token")String token);
 
 
 }

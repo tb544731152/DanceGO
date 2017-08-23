@@ -36,7 +36,7 @@ public class LoginPresenterImpl implements LoginPresenter {
     }
 
     @Override
-    public void login(String phonenum, final String password) {
+    public void login(final String phonenum, final String password) {
         final LoginService loginService=retrofit.create(LoginService.class);
 
         HttpManager.newInstance().with(mContext)
@@ -54,13 +54,14 @@ public class LoginPresenterImpl implements LoginPresenter {
                                 public void run() {
                                     Bundle bundle=new Bundle();
                                     bundle.putString(ConstantConfig.PASSWORD,password);
+                                    bundle.putString(ConstantConfig.PHONENUM,phonenum);
 //                                    bundle.putParcelable(ConstantConfig.USER_INFO,response);
-                                    bundle.putString(ConstantConfig.USERNAME,response.getData().getUsername());
-                                    bundle.putString(ConstantConfig.PHONENUM,response.getData().getPhonenum());
+                                    bundle.putString(ConstantConfig.USERNAME,response.getData().getUserName());
+                                    bundle.putString(ConstantConfig.USERID,response.getData().getUserID());
                                     bundle.putString(ConstantConfig.TOKEN,response.getData().getToken());
                                     loginView.gotoMainActivity(bundle);
                                 }
-                            },2000);
+                            },1000);
                         }else if(result.equals(ConstantConfig.FAILURE)&&response.getError()!=null){
                             Toast.makeText(mContext,"登录失败。"+response.getError(),Toast.LENGTH_SHORT).show();
                         }

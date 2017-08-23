@@ -11,7 +11,7 @@ public class GroupList {
 
     /**
      * result : success
-     * data : [{"groupnum":"000000","groupname":"testgroup","identy":3}]
+     * data : [{"GroupNum":"000000","GroupName":"testgroup","Identity":3}]
      */
 
     private String result;
@@ -35,37 +35,71 @@ public class GroupList {
 
     public static class DataBean {
         /**
-         * groupnum : 000000
-         * groupname : testgroup
-         * identy : 3
+         {
+         "GroupNum": "000000",
+         "GroupName": "testgroup",
+         "NameInGroup": "test1",
+         "IsReady": false,
+         "MessageUnread": 3,
+         "ApplyUnread": 2,
+         "NoticeUnread": 0,
+         "Identity": 3
+         }
          */
 
-        private String groupnum;
-        private String groupname;
-        private int identy;
+        private String GroupNum;
+        private String GroupName;
+        private String NameInGroup;
+        private boolean IsReady;
+        private int MessageUnread;
+        private int ApplyUnread;
+        private int NoticeUnread;
+        private int Identity;
 
-        public String getGroupnum() {
-            return groupnum;
+
+
+        public String getGroupNum() {
+            return GroupNum;
         }
 
-        public void setGroupnum(String groupnum) {
-            this.groupnum = groupnum;
+        public void setGroupNum(String GroupNum) {
+            this.GroupNum = GroupNum;
         }
 
-        public String getGroupname() {
-            return groupname;
+        public String getGroupName() {
+            return GroupName;
         }
 
-        public void setGroupname(String groupname) {
-            this.groupname = groupname;
+        public void setGroupName(String GroupName) {
+            this.GroupName = GroupName;
         }
 
-        public int getIdenty() {
-            return identy;
+        public int getIdentity() {
+            return Identity;
         }
 
-        public void setIdenty(int identy) {
-            this.identy = identy;
+        public void setIdentity(int Identity) {
+            this.Identity = Identity;
         }
+
+        public boolean getIsReady() {return IsReady;}
+
+        public int getApplyUnread() {return ApplyUnread;}
+
+        public int getMessageUnread() {return MessageUnread;}
+
+        public int getNoticeUnread() {return NoticeUnread;}
+
+        public String getNameInGroup() {return NameInGroup;}
+
+        public void setApplyUnread(int applyUnread) {ApplyUnread = applyUnread;}
+
+        public void setMessageUnread(int messageUnread) {MessageUnread = messageUnread;}
+
+        public void setNameInGroup(String nameInGroup) {NameInGroup = nameInGroup;}
+
+        public void setNoticeUnread(int noticeUnread) {NoticeUnread = noticeUnread;}
+
+        public void setIsReady(boolean isready) {IsReady = isready;}
     }
 }

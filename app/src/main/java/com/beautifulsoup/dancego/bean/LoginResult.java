@@ -13,7 +13,7 @@ public class LoginResult implements Parcelable{
 
     /**
      * result : success
-     * data : {"username":"wangxiaohao","phonenum":"10987654321","token":"3KCYT4LTGHV2","GetGroupInfoList":[]}
+     * data : {"UserName":"wangxiaohao","UserID":"10987654321","Token":"3KCYT4LTGHV2","JoinedGroups":[]}
      * error : null
      */
 
@@ -76,21 +76,21 @@ public class LoginResult implements Parcelable{
 
     public static class DataBean implements Parcelable{
         /**
-         * username : wangxiaohao
-         * phonenum : 10987654321
-         * token : 3KCYT4LTGHV2
-         * GetGroupInfoList : []
+         * UserName : wangxiaohao
+         * UserID : 10987654321
+         * Token : 3KCYT4LTGHV2
+         * JoinedGroups : []
          */
 
-        private String username;
-        private String phonenum;
-        private String token;
-        private List<?> GetGroupInfoList;
+        private String UserName;
+        private String UserID;
+        private String Token;
+        private List<?> JoinedGroups;
 
         protected DataBean(Parcel in) {
-            username = in.readString();
-            phonenum = in.readString();
-            token = in.readString();
+            UserName = in.readString();
+            UserID = in.readString();
+            Token = in.readString();
         }
 
         public static final Creator<DataBean> CREATOR = new Creator<DataBean>() {
@@ -105,45 +105,45 @@ public class LoginResult implements Parcelable{
             }
         };
 
-        public String getUsername() {
-            return username;
+        public String getUserName() {
+            return UserName;
         }
 
-        public void setUsername(String username) {
-            this.username = username;
+        public void setUserName(String UserName) {
+            this.UserName = UserName;
         }
 
-        public String getPhonenum() {
-            return phonenum;
+        public String getUserID() {
+            return UserID;
         }
 
-        public void setPhonenum(String phonenum) {
-            this.phonenum = phonenum;
+        public void setUserID(String UserID) {
+            this.UserID = UserID;
         }
 
         public String getToken() {
-            return token;
+            return Token;
         }
 
-        public void setToken(String token) {
-            this.token = token;
+        public void setToken(String Token) {
+            this.Token = Token;
         }
 
-        public List<?> getGetGroupInfoList() {
-            return GetGroupInfoList;
+        public List<?> getJoinedGroups() {
+            return JoinedGroups;
         }
 
-        public void setGetGroupInfoList(List<?> GetGroupInfoList) {
-            this.GetGroupInfoList = GetGroupInfoList;
+        public void setJoinedGroups(List<?> JoinedGroups) {
+            this.JoinedGroups = JoinedGroups;
         }
 
         @Override
         public String toString() {
             return "DataBean{" +
-                    "username='" + username + '\'' +
-                    ", phonenum='" + phonenum + '\'' +
-                    ", token='" + token + '\'' +
-                    ", GetGroupInfoList=" + GetGroupInfoList +
+                    "UserName='" + UserName + '\'' +
+                    ", UserID='" + UserID + '\'' +
+                    ", Token='" + Token + '\'' +
+                    ", JoinedGroups=" + JoinedGroups +
                     '}';
         }
 
@@ -154,10 +154,10 @@ public class LoginResult implements Parcelable{
 
         @Override
         public void writeToParcel(Parcel dest, int flags) {
-            dest.writeString(username);
-            dest.writeString(phonenum);
-            dest.writeString(token);
-            dest.writeList(GetGroupInfoList);
+            dest.writeString(UserName);
+            dest.writeString(UserID);
+            dest.writeString(Token);
+            dest.writeList(JoinedGroups);
         }
     }
 

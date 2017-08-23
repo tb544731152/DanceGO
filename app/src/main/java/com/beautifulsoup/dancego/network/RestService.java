@@ -59,7 +59,7 @@ public interface RestService {
     Observable<Music> getMusic(@Url String url);
 
     @GET
-    Observable<GroupList> getGroupList(@Url String url, @Header("phonenum")String phonenum,@Header("token")String token);
+    Observable<GroupList> getGroupList(@Url String url, @Header("userid")String phonenum,@Header("token")String token);
 
 
 }

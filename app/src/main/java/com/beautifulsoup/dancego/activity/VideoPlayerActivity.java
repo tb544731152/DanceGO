@@ -31,8 +31,8 @@ public class VideoPlayerActivity extends BaseActivity {
 
 //        webView.setWebViewClient(new WebViewClient());
         WebSettings settings=webView.getSettings();
-        settings.setJavaScriptEnabled(true);
-        webView.loadUrl("file:///android_asset/video.html");
+        settings.setJavaScriptEnabled(false);
+        //webView.loadUrl("file:///android_asset/video.html");
     }
 
     @Override
@@ -45,10 +45,8 @@ public class VideoPlayerActivity extends BaseActivity {
         Intent intent=getIntent();
         String videoURL=intent.getStringExtra("video_url");
         if(null!=videoURL){
-            Uri uri=Uri.parse(videoURL);
-            webView.loadUrl("javascript:setUrl("+videoURL+")");
-
-
+            //Uri uri=Uri.parse(videoURL);
+            webView.loadUrl(videoURL);
         }
 
     }

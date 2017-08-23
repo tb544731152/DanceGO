@@ -48,10 +48,10 @@ public class Logout {
         return singleton;
     }
 
-    public void logout(String phonenum,String token){
+    public void logout(String userid,String token){
         LogoutService service=retrofit.create(LogoutService.class);
         HttpManager.newInstance().with(mContext)
-                .setObservable(service.logoutUser(ConstantConfig.BASE_URL+REQUEST_PATH,phonenum,token))
+                .setObservable(service.logoutUser(ConstantConfig.BASE_URL+REQUEST_PATH,userid,token))
                 .setDataListener(new HttpDataListener<LogoutResult>(){
                     @Override
                     public void onNext(LogoutResult response) {

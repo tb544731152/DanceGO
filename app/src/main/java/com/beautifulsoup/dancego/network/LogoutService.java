@@ -15,7 +15,7 @@ public interface LogoutService {
 
 
     @POST
-    Observable<LogoutResult> logoutUser(@Url String url, @Header("phonenum")String phonenum,@Header("token")String token);
+    Observable<LogoutResult> logoutUser(@Url String url, @Header("userid")String phonenum,@Header("token")String token);
 
 
 

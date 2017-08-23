@@ -170,7 +170,7 @@ public class MainActivity extends BaseActivity implements MainView{
             SharedPreferences.Editor editor=preferences.edit();
             editor.putString(ConstantConfig.USERNAME,bundle.getString(ConstantConfig.USERNAME))
                     .putString(ConstantConfig.PASSWORD,bundle.getString(ConstantConfig.PASSWORD))
-                    .putString(ConstantConfig.PHONENUM,bundle.getString(ConstantConfig.PHONENUM))
+                    .putString(ConstantConfig.USERID,bundle.getString(ConstantConfig.USERID))
                     .putString(ConstantConfig.TOKEN,bundle.getString(ConstantConfig.TOKEN)).apply();
 
         }
@@ -222,15 +222,15 @@ public class MainActivity extends BaseActivity implements MainView{
 
     private void logout(){
         SharedPreferences preferences=PreferenceManager.getDefaultSharedPreferences(App.getContext());
-        String phonenum=preferences.getString(ConstantConfig.PHONENUM,"-");
+        String userid=preferences.getString(ConstantConfig.USERID,"-");
         String token=preferences.getString(ConstantConfig.TOKEN,"-");
         Log.i(ConstantConfig.USERNAME, preferences.getString(ConstantConfig.USERNAME,"-"));
         Log.i(ConstantConfig.PASSWORD, preferences.getString(ConstantConfig.PASSWORD,"-"));
         Log.i(ConstantConfig.TOKEN,token);
-        Log.i(ConstantConfig.PHONENUM, phonenum);
+        Log.i(ConstantConfig.USERID, userid);
 
         logout=Logout.newInstance().with(getActivityContext());
-        logout.logout(phonenum,token);
+        logout.logout(userid,token);
         ((TextView)navigationView.getHeaderView(0).findViewById(R.id.tv_username)).setText("");
     }
 

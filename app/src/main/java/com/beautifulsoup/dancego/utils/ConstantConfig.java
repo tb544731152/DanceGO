@@ -30,10 +30,11 @@ public class ConstantConfig {
 
     //用户信息相关
     public static final String USER_INFO="userinfo";
-    public static final String USERNAME="username";
-    public static final String PASSWORD="password";
-    public static final String PHONENUM="phonenum";
-    public static final String TOKEN="token";
+    public static final String USERNAME="UserName";
+    public static final String PASSWORD="PassWord";
+    public static final String USERID="UserID";
+    public static final String PHONENUM="PhoneNum";
+    public static final String TOKEN="Token";
 
     //获取Video列表
     public static final String GET_VIDEO="http://115.159.24.31/firstpage/video";
